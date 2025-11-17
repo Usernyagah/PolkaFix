@@ -1,19 +1,39 @@
 # PolkaFix - Decentralized Bug Bounty Platform
 
-PolkaFix is a decentralized bug bounty platform built on Moonbeam that enables project maintainers to post bounties for fixing issues and rewards developers with wDOT tokens for successful fixes.
+## 🚀 Project Overview & Objectives
 
-## 🌟 Overview
+**PolkaFix** is a decentralized bug bounty platform that bridges open source projects with developers via an on-chain bounty and reward mechanism. Built on Moonbeam (a Polkadot parachain) and Moonbase Alpha (testnet), it enables:
+- Project maintainers to post bug bounties with wDOT rewards
+- Developers to submit fixes and PRs for review
+- Community members to vote to approve or reject proposed fixes
+- Automatic, transparent payouts for successful contributions
 
-PolkaFix connects project maintainers with developers through a transparent, on-chain bounty system. Post issues, submit fixes, and get rewarded - all powered by smart contracts on Moonbeam.
+The objective is to foster trustless and efficient collaboration for open-source software maintenance and security.
+
+---
 
 ## ✨ Features
+- **Post Bounties:** Project maintainers can create bounties with wDOT token rewards
+- **Submit Fixes:** Developers submit PR links addressing issues for bounties
+- **Decentralized Voting:** 3+ community votes (70% approval threshold)
+- **Automatic Payouts:** Rewards distributed automatically when fixes are approved
+- **Full Transparency:** All actions and votes are tracked on-chain
+- **Moonbeam Integration:** Deployed on Moonbase Alpha testnet
 
-- **Post Bounties**: Create bounties with wDOT rewards for fixing issues
-- **Submit Fixes**: Developers can submit pull request links for bounties
-- **Community Voting**: Decentralized voting system (minimum 3 votes, 70% approval required)
-- **Automatic Payouts**: Rewards are automatically distributed when fixes are approved
-- **Transparent**: All bounties, submissions, and votes are recorded on-chain
-- **Moonbeam Integration**: Built on Moonbeam/Moonbase Alpha testnet
+---
+
+## 📝 Table of Contents
+- [Contract Info](#-contract-information)
+- [Quick Start](#-quick-start)
+- [Technologies & Dependencies](#-technologies)
+- [Local & Testnet Deployment](#-deploy-to-testnet-moonbase-alpha)
+- [Usage Guide](#-how-it-works)
+- [Links & Resources](#-links)
+- [Scripts](#-scripts)
+- [Contribution & License](#-contributing)
+- [Disclaimer](#️-disclaimer)
+
+---
 
 ## 📋 Contract Information
 
@@ -31,6 +51,8 @@ PolkaFix connects project maintainers with developers through a transparent, on-
 - `submitFix(bountyId, prLink)` - Submit a fix for a bounty
 - `vote(bountyId, approve)` - Vote on a submitted fix
 - `bountyCount()` - Get total number of bounties
+
+---
 
 ## 🚀 Quick Start
 
@@ -58,6 +80,8 @@ cd ..
 cd client && npm run dev
 ```
 
+---
+
 ## 🛠️ Technologies
 
 This project is built with:
@@ -68,6 +92,8 @@ This project is built with:
 - **Smart Contracts**: Solidity, Hardhat
 - **Blockchain**: Moonbeam/Moonbase Alpha
 - **Deployment**: Vercel (frontend)
+
+---
 
 ## 💻 Development
 
@@ -100,6 +126,8 @@ cd client && npm run dev
 ```
 
 The development server will start at `http://localhost:8080` with hot-reload enabled.
+
+---
 
 ## Deploy to Testnet (Moonbase Alpha)
 
@@ -244,6 +272,8 @@ After successful deployment, you should have:
 - ✅ Live frontend URL from Vercel
 - ✅ Moonscan link to view contract
 
+---
+
 ## 📖 How It Works
 
 1. **Post a Bounty**: Project maintainers post bounties with wDOT rewards for fixing specific issues
@@ -252,12 +282,16 @@ After successful deployment, you should have:
 4. **Automatic Resolution**: If 70% or more approve, the bounty is automatically resolved
 5. **Reward Distribution**: The submitter receives the wDOT reward automatically
 
+---
+
 ## 🔗 Links
 
 - **Contract on Moonscan**: [0xD1d526991f180504e2eBEa41cCAdf4DB0F7Bf097](https://moonbase.moonscan.io/address/0xD1d526991f180504e2eBEa41cCAdf4DB0F7Bf097)
 - **wDOT Token**: [0xd909178cC99D318E4d1390dc624800C34066dc6c](https://moonbase.moonscan.io/address/0xd909178cC99D318E4d1390dc624800C34066dc6c)
 - **Moonbase Alpha Explorer**: https://moonbase.moonscan.io
 - **Moonbeam Documentation**: https://docs.moonbeam.network
+
+---
 
 ## 📝 Scripts
 
@@ -277,13 +311,19 @@ npm run verify:moonbase # Verify contract on Moonscan
 npm run check:wdot      # Check wDOT balance and contract info
 ```
 
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+---
+
 ## 📄 License
 
 MIT License - see LICENSE file for details
+
+---
 
 ## ⚠️ Disclaimer
 
