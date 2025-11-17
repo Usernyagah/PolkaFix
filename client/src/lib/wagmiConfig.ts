@@ -8,7 +8,7 @@ const projectId = import.meta.env.VITE_PROJECT_ID_WALLETCONNECT || 'demo-project
 const metadata = {
   name: 'PolkaFix',
   description: 'Decentralized Bug Bounty Platform on Moonbeam',
-  url: 'https://polkafix.app',
+  url: 'https://polka-fix.vercel.app', // Updated to match deployed Vercel URL
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
