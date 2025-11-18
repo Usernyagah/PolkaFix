@@ -19,27 +19,33 @@ const Home = () => {
 
   const fetchBounties = async (): Promise<BountyWithId[]> => {
     const provider = new ethers.BrowserProvider(window.ethereum);
-    const contract = getPolkaFixContract(provider, chainId);
-
+    const chainId = await provider.send('eth_chainId', []);
+    const contract = getPolkaFixContract(provider, Number(chainId));
+    const contractAddr = await contract.getAddress();
     const count = await contract.bountyCount();
+    console.log('[Bounty Debug]', { chainId, contractAddr, count: Number(count) });
     const bounties: BountyWithId[] = [];
-
-    for (let i = 1; i <= Number(count); i++) {
-      const bounty = await contract.bounties(i);
-      bounties.push({
-        id: i,
-        title: bounty[0],
-        description: bounty[1],
-        issueUrl: bounty[2],
-        reward: bounty[3],
-        submitter: bounty[4],
-        fixPR: bounty[5],
-        resolved: bounty[6],
-        yesVotes: bounty[7],
-        noVotes: bounty[8],
-      });
+    for (let i = 0; i < Number(count); i++) {
+      try {
+        const bounty = await contract.bounties(i);
+        console.log(`[Bounty Debug] Fetched bounty at index ${i}:`, bounty);
+        bounties.push({
+          id: i,
+          title: bounty[0],
+          description: bounty[1],
+          issueUrl: bounty[2],
+          reward: bounty[3],
+          submitter: bounty[4],
+          fixPR: bounty[5],
+          resolved: bounty[6],
+          yesVotes: bounty[7],
+          noVotes: bounty[8],
+        });
+      } catch (err) {
+        console.error(`[Bounty Debug] Error fetching bounty at index ${i}:`, err);
+      }
     }
-
+    console.log('[Bounty Debug] bounties final array:', bounties);
     return bounties.reverse(); // Show newest first
   };
 
@@ -80,7 +86,6 @@ const Home = () => {
             </div>
           )}
         </div>
-
         {/* Bounties Grid */}
         {!isConnected ? (
           <div className="text-center py-12">
@@ -88,28 +93,30 @@ const Home = () => {
           </div>
         ) : isLoading ? (
           <LoadingSkeleton />
-        ) : bounties && bounties.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {bounties.map((bounty) => (
-              <BountyCard key={bounty.id} bounty={bounty} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 bg-card rounded-xl border border-border">
-            <p className="text-xl text-muted-foreground mb-4">No bounties yet</p>
-            <p className="text-sm text-muted-foreground mb-6">Be the first to create one!</p>
-            <Button onClick={() => setIsModalOpen(true)}>
-              <Plus className="w-4 h-4 mr-2" />
-              Create First Bounty
-            </Button>
-          </div>
-        )}
+        ) : bounties ? (
+          bounties.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {bounties.map((bounty) => (
+                <BountyCard key={bounty.id} bounty={bounty} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-card rounded-xl border border-border">
+              <p className="text-xl text-muted-foreground mb-4">No bounties yet</p>
+              <p className="text-sm text-muted-foreground mb-6">Be the first to create one!</p>
+              <Button onClick={() => setIsModalOpen(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                Create First Bounty
+              </Button>
+            </div>
+          )
+        ) : null}
       </div>
-
+      {/* Always mount the modal with refetch onSuccess */}
       <CreateBountyModal
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
-        onSuccess={() => refetch()}
+        onSuccess={() => refetch()} // always refetch on success
       />
     </div>
   );
