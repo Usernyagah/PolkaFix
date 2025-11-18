@@ -1,0 +1,18 @@
+{
+  "name": "polkafix-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:moonbase": "hardhat run scripts/deploy.cjs --network moonbase",
+    "verify:moonbase": "hardhat run scripts/verify.cjs --network moonbase",
+    "check:wdot": "hardhat run scripts/check-wdot.cjs --network moonbase"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.0"
+  }
+}
+

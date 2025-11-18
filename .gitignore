@@ -12,6 +12,23 @@ dist
 dist-ssr
 *.local
 
+# Hardhat (contracts/)
+contracts/cache
+contracts/artifacts
+contracts/.env
+contracts/address.txt
+
+# Client
+client/dist
+client/dist-ssr
+client/.env.local
+client/node_modules
+
+# Root
+node_modules
+.env
+.env.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
